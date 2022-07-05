@@ -1,45 +1,153 @@
-# ZoomCare Candidate Code Challenge - QA / Automation
+# Test Cases
 
-![ZoomCare Logo](https://avatars0.githubusercontent.com/u/48925141?s=150)
+1 - Find city by location service - location services off
+``` java
+Given the user is on the schedule page 
+And he is not logged in
+When he changes the city to seek care from the location service
+And he blocks the location service on his device
+Then he should see the alert message: "Please enable location services to find care near you."
+```
+2 - Change city by list of available cities
+``` java
+Given the user is on the schedule page
+And he is not logged in
+When he changes the city to seek care from the available cities
+Then he should see the city was changed correctly
+```
 
-Welcome to the ZoomCare QA / Automation Candidate Code Challenge. If you are here you most likely have interest in joining the ZoomCare Quality Engineering Team and have been asked to respond to this challenge. If you came here on your own, you are welcome to explore the challenge and use it to sharpen your skills or prepare for future interviews.
+3 - Change city by city zip code
+``` java
+Given the user is on the schedule page
+And he is not logged in
+When he changes the city to seek care by entering the city zip code
+Then he should see the city was changed correctly
+```
 
-The ZoomCare Candidate Code Challenges are intended to take around 2-3 hours to complete. This is not intended to be an extensive test of your programing skills or knowledge, but rather as a starting point for further conversations during the application process.
+4 -  Change city by city name
+``` java
+Given the user is on the schedule page
+And he is not logged in
+When he changes the city to seek care by entering the city name
+Then he should see the city was changed correctly
+```
 
-## Instructions
+5 - Choose the ChatCare option - without logging
+``` java
+Given the user is on the schedule page
+And he is not logged in
+When he selects the illness/injury
+And he chooses the ChatCare option
+Then he should see the login page
+```
 
-This Candidate Code Challenge is geared specifically toward QA Engineers with end-to-end testing and programming experience. The challenge is split into two parts: the first is to devise a test plan for the prompt provided, while the second is to create a basic automation framework that executes some of the test cases written. Both parts are of equal importance, but you'll likely spend more time on Part 2 (automation).
+6 - Availability of the pages in the online help section
+``` java
+Given the user is on the schedule page
+And he is not logged in
+When he goes to each link on the Online Help section
+Then he should see that each link has worked correctly
+And every page is available
+```
 
-Specifically:
-1. Create a fork of this repository into your personal GitHub space.
-2. Wipe the contents of this README file, and in its place, create two sections: Test Cases and Automation Instructions.
-3. Use the Test Cases section in the README file to write all of your test cases in response to the first part.
-4. Set up an automation framework and its associated pages/specs/utilities/etc within the repository.
-5. Use the Automation Instructions section in the README to provide instructions for how to set up the framework. Assume the user has nothing pre-installed and also does not know how to use the framework you chose.
-7. Create a Pull Request back to the original project.
+7 - Go to schedule page from the main page
+``` java
+Given the user is on the main page
+And he is not logged in
+When he goes to the schedule page
+Then he should see the schedule page correctly
+```
 
-## Prompt
+8 - Select illness/injury - frontend
+``` java
+Given the user is on the schedule page
+And he is not logged in
+When he selects the "Emergency Care" illness
+Then he should see that the illness was selected correctly
+```
 
-ZoomCare has a unique promise: we make healthcare delightful by giving it to you on your terms. No matter where or when you want care, ZoomCare can provide complete care for all that ails them, in the palm of their hand. The most critical way we deliver on that promise is through our online scheduling system, which is completely self-service by our patients and coordinates the vast majority of appointments we serve. We call this the "Search/Sechedule Moment". Simply visit our public website at https://www.zoomcare.com, and you'll immediately be greeted with a scheduler to get you on your way.
+9- Select illness/injury - e2e - validate the response for an user who is not logged in
+``` java
+Given the user is on the schedule page
+And he is not logged in
+When he selects the "Emergency Care" illness
+Then he should see that the illness was selected correctly
+And the service response should be a 403 forbidden
+```
 
-### Part 1
+10 - Schedule a ChatCare - user not logged in
+``` java
+Given the user is on the schedule page
+And he is not logged in
+When he selects the "Emergency Care" illness
+And he selects the ChatCare option
+Then he should see the login page
+```
 
-Devise a set of test scenarios / acceptance criteria that covers enough breadth of this feature for a daily smoke test.
 
-A few asks and helpful tips:
-- Keep your focus to just the scheduling page (https://www.zoomcare.com/schedule). Anything else is not within scope of this challenge.
-- If you click on a time slot, it will redirect you to a login screen if you don't have an account. We aren't concerned with the behavior past this point; focus on the behavior that displays to an unauthenticated guest just browsing our schedule. You can make an account if you wish, but these are real appointments - **please do not actually schedule any appointments for testing**.
-- We know there are many, many links on our website. Be selective in which links you want to verify work, and what page they should open up under what condition.
-- Prioritize your plan; try to keep your list to 8-10 test cases.
-- We're interested in testing the application's front-end user interface, from an end-to-end perspective. Thinking about what the back-end (ie. API endpoint) does is useful, but is not a requirement for this challenge.
-- Think about the entire workflow: what happens if you change X parameter? Does Y also change depending on X? What about things changing without any interaction after a period of time?
+# Automation Framework Instructions
 
-### Part 2
+## The technologies used are:
+* Java
+* Cucumber
+* Gradle
+* Selenium
+* Serenity
 
-Take at least three cases that you've written in Part 1, and propose how they would transfer into an automated test by coding/scripting them with a framework and/or tool. Use whatever you're comfortable with (Selenium, Cypress, etc.), and you can write in any programming/scripting language you choose.
+## Required tool installations
 
-What we're looking for:
-- Verifying you can write code and/or script well (knowledge of built-in functions for your chosen language, good organization of classes/functions, reasonable use of comments, etc.)
-- You have a clear vision for how to automate (using POM or Screenplay methodology, BDD or TDD best practices, etc.)
-- You know how to get the results you need (knowledge of the framework(s) and libraries chosen, and using their functionality appropriately)
-- Working code is good. Pretty working code is better. Fast, pretty, working code is best.
+* Java JDK [download](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
+* Appium [download](https://github.com/appium/appium-desktop/releases/)
+* Gradle [download](https://gradle.org/install/)
+* Git executable [download](https://git-scm.com/downloads)
+
+## Recommended tool installations
+
+* IDE - IntelliJ IDEA Community Edition [download](https://www.jetbrains.com/idea/download)
+* Gitflow Workflow [Documentation](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+
+## Setting required environment variables
+
+We recommended going the official documentation for necessary setup.
+
+* Java [Documentation](https://java.com/en/download/help/path.html)
+* Gradle [Documentation](https://gradle.org/install/)
+
+## Project compilation
+
+It is important to compile the project before making a Pull Request in order to guarantee that the framework is working correctly.
+
+```
+gradle compileJava
+```
+And 
+``` 
+gradle clean assemble
+```
+
+## Run project
+
+Available drivers [firefox, chrome, ie, safari, opera]
+
+* Execute specific test using tags 
+``` java
+ gradle clean test -D"cucumber.filter.tags=@Smoke"
+```
+
+* Execution All tests and report generation - To run all the project tests and generate the Serenity report
+``` java
+ gradle clean test aggregate
+```
+
+## Report
+The project is supported by [Serenity](https://serenity-bdd.github.io/theserenitybook/latest/manual-tests.html) for the generation of reports.
+
+The report will available at -> 
+
+``` 
+├──AutomationFramework
+|   └── target
+|       └── site
+|           └── serenity
+|               └── index.html
+```
